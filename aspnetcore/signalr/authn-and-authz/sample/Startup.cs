@@ -36,6 +36,10 @@ namespace SignalRAuthenticationSample
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            // Entityframework backed Identity Provider, requires a DB (connection string in appsettings.json)
+            // to initalize the DB from the Migrations in (./Data/Migrations folder)
+            // Open Package Manager Console and run
+            // Update-Database
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
